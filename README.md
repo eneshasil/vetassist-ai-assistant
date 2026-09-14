@@ -1,79 +1,87 @@
-# Data Project Template
+# 🐾 VetAssist AI Assistant
 
-<a target="_blank" href="https://datalumina.com/">
-    <img src="https://img.shields.io/badge/Datalumina-Project%20Template-2856f7" alt="Datalumina Project" />
-</a>
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Status](https://img.shields.io/badge/Status-Active-success.svg)
 
-## Cookiecutter Data Science
-This project template is a simplified version of the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org) template, created to suit the needs of Datalumina and made available as a GitHub template.
+**VetAssist AI Assistant**, veteriner hekimler, klinik çalışanları ve evcil hayvan sahipleri için geliştirilmiş, yapay zeka destekli akıllı bir sanal asistandır. Bu proje, hayvan sağlığı süreçlerini hızlandırmak, ön teşhis desteği sağlamak ve hasta kayıt/takip süreçlerini otomatize etmek amacıyla tasarlanmıştır.
 
-## Adjusting .gitignore
+## 🚀 Özellikler
 
-Ensure you adjust the `.gitignore` file according to your project needs. For example, since this is a template, the `/data/` folder is commented out and data will not be exlucded from source control:
+- **🤖 Akıllı Soru-Cevap:** Evcil hayvanların semptomlarına ve bakımına dair sık sorulan soruları yapay zeka ile anında yanıtlar.
+- **🩺 Ön Teşhis ve Yönlendirme:** Girilen semptomlara dayanarak olası durumlar hakkında bilgi verir ve kritik durumlarda acil veteriner hekim yönlendirmesi yapar.
+- **📅 Randevu ve Takip:** Aşı takvimi, ilaç hatırlatıcıları ve klinik randevularının yapay zeka tarafından asiste edilmesi.
+- **📁 Klinik Veritabanı Entegrasyonu:** Veteriner hekimler için hasta geçmişine (anamnez) hızlı erişim ve özetleme yeteneği.
+- **💬 Doğal Dil İşleme (NLP):** Kullanıcıların karmaşık cümlelerini anlayıp empati kurarak doğru medikal bilgiyi anlaşılır bir dille sunma.
 
-```plaintext
-# exclude data from source control by default
-# /data/
-```
+## 🛠️ Kullanılan Teknolojiler
 
-Typically, you want to exclude this folder if it contains either sensitive data that you do not want to add to version control or large files.
+Bu proje geliştirilirken aşağıdaki modern teknolojiler kullanılmıştır:
 
-## Duplicating the .env File
-To set up your environment variables, you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
+- **Dil:** Python
+- **Yapay Zeka & LLM:** OpenAI API / LangChain / Hugging Face (Kullanılan modele göre özelleştirilebilir)
+- **Backend:** FastAPI veya Flask
+- **Frontend / Arayüz:** Streamlit veya React.js (Kullanıcı etkileşimi için)
+- **Veritabanı:** PostgreSQL / MongoDB veya Vektör Veritabanı (ChromaDB / Pinecone)
 
+## ⚙️ Kurulum
+
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
+
+### 1. Depoyu Klonlayın
 ```bash
-cp .env.example .env # Linux, macOS, Git Bash, WSL
-copy .env.example .env # Windows Command Prompt
+git clone https://github.com/eneshasil/vetassist-ai-assistant.git
+cd vetassist-ai-assistant
 ```
 
-This command creates a copy of `.env.example` and names it `.env`, allowing you to configure your environment variables specific to your setup.
-
-
-## Project Organization
-
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── README.md          <- The top-level README for developers using this project
-├── data
-│   ├── external       <- Data from third party sources
-│   ├── interim        <- Intermediate data that has been transformed
-│   ├── processed      <- The final, canonical data sets for modeling
-│   └── raw            <- The original, immutable data dump
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-└── src                         <- Source code for this project
-    │
-    ├── __init__.py             <- Makes src a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    │    
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    ├── plots.py                <- Code to create visualizations 
-    │
-    └── services                <- Service classes to connect with external platforms, tools, or APIs
-        └── __init__.py 
+### 2. Sanal Ortam (Virtual Environment) Oluşturun
+```bash
+python -m venv venv
+source venv/bin/activate  # Windows için: venv\Scripts\activate
 ```
 
---------
+### 3. Gerekli Paketleri Yükleyin
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Çevresel Değişkenleri (Environment Variables) Ayarlayın
+Proje dizininde bir `.env` dosyası oluşturun ve API anahtarlarınızı ekleyin:
+```env
+OPENAI_API_KEY=senin_api_anahtarin_buraya
+DATABASE_URL=senin_veritabani_url_buraya
+```
+
+### 5. Uygulamayı Başlatın
+```bash
+# Eğer Streamlit kullanılıyorsa:
+streamlit run app.py
+
+# Eğer FastAPI/Uvicorn kullanılıyorsa:
+uvicorn main:app --reload
+```
+
+## 📖 Kullanım
+
+Uygulama çalıştıktan sonra web tarayıcınız üzerinden (genellikle `http://localhost:8501` veya `http://localhost:8000`) asistan ile sohbet arayüzüne erişebilirsiniz. 
+Evcil hayvanınızın durumunu, yaşını, cinsini ve belirtilerini yazarak asistandan anında destek alabilirsiniz.
+
+> **⚠️ Yasal Uyarı:** VetAssist AI, yalnızca bilgilendirme amaçlıdır. Profesyonel veteriner hekim muayenesinin, teşhisinin veya tedavisinin yerini almaz. Acil durumlarda daima en yakın veteriner kliniğine başvurun.
+
+## 🤝 Katkıda Bulunma
+
+Bu proje açık kaynaktır ve her türlü katkıya (Pull Request, Issue açma, hata düzeltme, yeni özellik ekleme) açıktır.
+1. Projeyi Fork'layın
+2. Yeni bir dal (branch) oluşturun (`git checkout -b feature/YeniOzellik`)
+3. Değişikliklerinizi commit'leyin (`git commit -m 'Yeni bir özellik eklendi'`)
+4. Dalınızı (branch) push'layın (`git push origin feature/YeniOzellik`)
+5. Bir Pull Request açın
+
+## 📄 Lisans
+
+Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasına göz atabilirsiniz.
+
+## 📬 İletişim
+
+Geliştirici: **eneshasil**
+GitHub: [https://github.com/eneshasil](https://github.com/eneshasil)
